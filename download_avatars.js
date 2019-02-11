@@ -2,9 +2,16 @@ var request = require('request');
 var secret = require('./secret.js');
 var fs = require('fs');
 
+const gitHubUser = process.argv.slice(2)[0];
+const gitHubRepository = process.argv.slice(2)[1];
+
 console.log('Welcome to the GitHub Avatar Downloader!');
 
 function getRepoContributors(repoOwner, repoName, cb) {
+
+  if(repoOwner === undefined || repoName === undefined){
+    return console.log("Error!!! \nBoth repo owner and repo name arguments are required in order to run the program");
+  }
 
   var options = {
     url: `https://api.github.com/repos/${repoOwner}/${repoName}/contributors`,
@@ -48,7 +55,8 @@ function downloadImageByURL(url, filePath) {
        });
 }
 
-getRepoContributors("jquery", "jquery", function(err, result) {
+getRepoContributors(gitHubUser, gitHubRepository, function(err, result) {
+
   console.log("Errors:", err);
   //console.log("Result:", result);
 });
