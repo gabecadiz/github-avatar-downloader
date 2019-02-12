@@ -46,7 +46,7 @@ getRepoContributors(gitHubUser, gitHubRepository, function(err, result) {
         info.forEach(function(eachUser){
           var avatarUrl = eachUser.avatar_url;
         //creates filepath for coming download
-          var imagePath = `avatars/${eachUser.login}.jpg`;
+          var imagePath = `./avatars/${eachUser.login}.jpg`;
           downloadImageByURL(avatarUrl, imagePath);
         });
 });
